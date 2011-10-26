@@ -11,6 +11,8 @@ class OSUHeaderPlugin {
   private $background_color_option_name, $background_color_options;
 
   function OSUHeaderPlugin() {
+  	
+  	add_action('init', array($this, 'enqueue_scripts'));
     add_action('shutdown', array(&$this, 'add_osu_header'));
     add_action('admin_menu', array(&$this, 'add_options_page'));
     $this->background_color_option_name = 'OSUNavBackgroundColor';
@@ -55,6 +57,10 @@ class OSUHeaderPlugin {
       echo '<script>var osuNavBackgroundColor = "' . $background_color . '";</script>';
     }
 
+  }
+  
+  function enqueue_scripts() {
+    wp_enqueue_script('jquery');
   }
 }
 
