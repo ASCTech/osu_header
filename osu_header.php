@@ -49,17 +49,15 @@ class OSUHeaderPlugin {
   }
 
   function add_osu_header() {
-    echo '<script src="' . plugins_url('osu_header.js', __FILE__) .'"></script>';
-    echo '<link id="osu-header-css" media="all" type="text/css" href="' . plugins_url('osu_header.css', __FILE__) .'" rel="stylesheet" />';
-
     if ($background_color = get_option($this->background_color_option_name)) {
       echo '<script>var osuNavBackgroundColor = "' . $background_color . '";</script>';
     }
-
   }
   
   function enqueue_scripts() {
     wp_enqueue_script('jquery');
+    wp_enqueue_script('osu_header', plugins_url('osu_header.js', __FILE__), 'jquery');
+    wp_enqueue_style('osu_header_style', plugins_url('osu_header.css', __FILE__));
   }
 }
 
